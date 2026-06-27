@@ -1,4 +1,4 @@
-on:sa
+on:
   pull_request:
 
 jobs:
