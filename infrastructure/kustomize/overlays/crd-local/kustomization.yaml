@@ -1,3 +1,3 @@
 resources:
   - ../../bases/cert-manager
-  - hello
+  - ../../bases/argocd

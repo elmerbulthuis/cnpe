@@ -1,18 +1,17 @@
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: hello
-  name: hello
+    app: goodmorning
+  name: goodmorning
 spec:
   selector:
     matchLabels:
-      app: hello
+      app: goodmorning
   template:
     metadata:
       labels:
-        app: hello
+        app: goodmorning
     spec:
       containers:
         - command:
@@ -39,6 +38,7 @@ spec:
               mountPath: /srv/wwwroot
           securityContext:
             runAsUser: 65534 # nobody
+            runAsGroup: 65534 # nobody
             allowPrivilegeEscalation: false
             readOnlyRootFilesystem: true
             capabilities:
@@ -47,23 +47,8 @@ spec:
       volumes:
         - name: wwwroot
           configMap:
-            name: hello-wwwroot
+            name: goodmorning-wwwroot
       securityContext:
         runAsNonRoot: true
         seccompProfile:
           type: RuntimeDefault
-
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: hello
-spec:
-  type: ClusterIP
-  selector:
-    app: hello
-  ports:
-    - name: http
-      protocol: TCP
-      port: 8080
-      targetPort: http
