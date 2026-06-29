@@ -30,10 +30,10 @@ spec:
           resources:
             requests:
               cpu: 10m
-              memory: 10MiB
+              memory: 10Mi
             limits:
               cpu: 100m
-              memory: 100MiB
+              memory: 100Mi
           volumeMounts:
             - name: wwwroot
               mountPath: /srv/wwwroot
