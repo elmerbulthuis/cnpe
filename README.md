@@ -14,7 +14,7 @@ kubectl apply --server-side -f dist/kubernetes-crd-local.yaml
 
 Now you have a cluster with quite a few CNPE resources installed and configured!
 
-## LinkerD
+## Linkerd
 
 TODO
 
