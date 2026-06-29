@@ -1,0 +1,48 @@
+apiVersion: argoproj.io/v1alpha1
+kind: WorkflowTemplate
+metadata:
+  name: workflow-template
+spec:
+  entrypoint: main
+  serviceAccountName: workflow
+  templates:
+    - name: main
+      dag:
+        tasks:
+          - name: red
+            template: echo
+            arguments:
+              parameters:
+                - name: message
+                  value: "Red"
+          - name: green
+            template: echo
+            arguments:
+              parameters:
+                - name: message
+                  value: "Green"
+          - name: blue
+            template: echo
+            arguments:
+              parameters:
+                - name: message
+                  value: "Blue"
+          - name: white
+            template: echo
+            dependencies:
+              - red
+              - green
+              - blue
+            arguments:
+              parameters:
+                - name: message
+                  value: "White"
+    - name: echo
+      inputs:
+        parameters:
+          - name: message
+      container:
+        image: alpine:3.24
+        command:
+          - echo
+          - "{{inputs.parameters.message}}"
