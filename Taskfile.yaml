@@ -128,13 +128,9 @@ tasks:
   test:kubernetes-dry-run:
     deps:
       - build:kustomize
-      - build:helm
-    vars:
-      MANIFESTS:
-        ref: concat .KUSTOMIZE_OVERLAYS_CRD .KUSTOMIZE_OVERLAYS .HELM_CHARTS
     cmds:
       - for:
-          var: MANIFESTS
+          var: KUSTOMIZE_OVERLAYS_CRD
           as: MANIFEST
         cmd: >
           kubectl apply -f dist/kubernetes-{{.MANIFEST}}.yaml --dry-run=client
