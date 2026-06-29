@@ -1,0 +1,1 @@
+Goodmorning with message `{{ .Values.message }}` is ready to go.

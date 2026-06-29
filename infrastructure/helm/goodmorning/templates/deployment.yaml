@@ -2,16 +2,16 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: hello
-  name: hello
+    app: goodmorning
+  name: goodmorning
 spec:
   selector:
     matchLabels:
-      app: hello
+      app: goodmorning
   template:
     metadata:
       labels:
-        app: hello
+        app: goodmorning
     spec:
       containers:
         - command:
@@ -47,7 +47,7 @@ spec:
       volumes:
         - name: wwwroot
           configMap:
-            name: hello-wwwroot
+            name: goodmorning-wwwroot
       securityContext:
         runAsNonRoot: true
         seccompProfile:
