@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: hello
+spec:
+  destination:
+    namespace: hello-argo
+    server: https://kubernetes.default.svc
+  source:
+    path: infrastructure/kubernetes/overlays/hello-local
+    repoURL: https://github.com/elmerbulthuis/cpne.git
+    targetRevision: argo
+  sources: []
+  project: default
+  syncPolicy:
+    automated: null
+    syncOptions:
+      - CreateNamespace=true

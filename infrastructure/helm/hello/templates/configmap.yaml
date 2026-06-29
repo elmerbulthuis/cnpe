@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: hello-wwwroot
+  namespace: hello
+data:
+  index.html: '{{ tpl (.Files.Get "templates/index.html") . | quote }}'
