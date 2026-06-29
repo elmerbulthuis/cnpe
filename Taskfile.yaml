@@ -8,6 +8,7 @@ vars:
   KUSTOMIZE_OVERLAYS:
     - hello-local
     - hi-local
+    - colors-local
   HELM_CHARTS:
     - goodmorning
 

@@ -1,0 +1,6 @@
+namespace: colors
+
+resources:
+  - namespace.yaml
+  - service-account.yaml
+  - workflow-template.yaml
