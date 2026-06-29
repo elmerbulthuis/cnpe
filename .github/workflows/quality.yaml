@@ -8,7 +8,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: go-task/setup-task@v1
         with:
-          version: "3.37"
+          version: "3.50"
       - uses: actions/setup-node@v4
         with:
           node-version: "20"
@@ -23,7 +23,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: go-task/setup-task@v1
         with:
-          version: "3.37"
+          version: "3.50"
       - run: minikube start
       - run: task test
 
@@ -33,7 +33,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: go-task/setup-task@v1
         with:
-          version: "3.37"
+          version: "3.50"
       - run: minikube start
       - run: task build:kubernetes
       - run: >
