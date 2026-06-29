@@ -12,7 +12,7 @@ spec:
   source:
     path: infrastructure/kustomize/overlays/hi-local
     repoURL: https://github.com/elmerbulthuis/cpne.git
-    targetRevision: argo-rollouts
+    targetRevision: main
   project: default
   syncPolicy:
     automated:
