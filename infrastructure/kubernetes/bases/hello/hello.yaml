@@ -38,6 +38,7 @@ spec:
             - name: wwwroot
               mountPath: /srv/wwwroot
           securityContext:
+            runAsUser: 65534 # nobody
             allowPrivilegeEscalation: false
             readOnlyRootFilesystem: true
             capabilities:
