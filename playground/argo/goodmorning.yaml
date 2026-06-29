@@ -9,7 +9,7 @@ spec:
   source:
     path: infrastructure/helm/goodmorning
     repoURL: https://github.com/elmerbulthuis/cpne.git
-    targetRevision: argo
+    targetRevision: main
   sources: []
   project: default
   syncPolicy:
