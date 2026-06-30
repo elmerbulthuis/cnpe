@@ -8,7 +8,6 @@ spec:
     matchLabels:
       app.kubernetes.io/name: prometheus
   port: 4191
-  proxyProtocol: "HTTP/1"
 ---
 apiVersion: policy.linkerd.io/v1alpha1
 kind: AuthorizationPolicy

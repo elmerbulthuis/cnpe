@@ -33,7 +33,6 @@ spec:
     matchLabels:
       app: hello
   port: 4191
-  proxyProtocol: "HTTP/1"
 ---
 apiVersion: policy.linkerd.io/v1alpha1
 kind: AuthorizationPolicy
