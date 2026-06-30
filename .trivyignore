@@ -1,1 +1,2 @@
 KSV-0110 # default namespace, there is no default namespace for applications that are managed via a CD solution
+KSV-0125 # allow image from unstrusted registry

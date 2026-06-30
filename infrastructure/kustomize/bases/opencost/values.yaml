@@ -16,10 +16,10 @@ opencost:
     costModel:
       description: custom cost model
       CPU: 1.25
-      spotCPU: 0.006655
-      RAM: 0.50
-      spotRAM: 0.000892
-      GPU: 0.95
+      spotCPU: 0.25
+      RAM: 1.50
+      spotRAM: 0.5
+      GPU: 2.00
       storage: 0.25
       zoneNetworkEgress: 0.01
       regionNetworkEgress: 0.01

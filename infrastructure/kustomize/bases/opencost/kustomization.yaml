@@ -10,3 +10,6 @@ helmCharts:
     releaseName: opencost
     version: 2.5.25
     valuesFile: values.yaml
+
+patches:
+  - path: patches.yaml
