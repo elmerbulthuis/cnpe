@@ -23,3 +23,28 @@ spec:
     - kind: ServiceAccount
       name: default
       namespace: hello-client
+---
+apiVersion: policy.linkerd.io/v1beta3
+kind: Server
+metadata:
+  name: metrics
+spec:
+  podSelector:
+    matchLabels:
+      app: hello
+  port: 4191
+  proxyProtocol: "HTTP/1"
+---
+apiVersion: policy.linkerd.io/v1alpha1
+kind: AuthorizationPolicy
+metadata:
+  name: allow-prometheus
+spec:
+  targetRef:
+    group: policy.linkerd.io
+    kind: Server
+    name: metrics
+  requiredAuthenticationRefs:
+    - kind: ServiceAccount
+      name: prometheus
+      namespace: monitoring
