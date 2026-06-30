@@ -1,0 +1,17 @@
+---
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: print-message
+spec:
+  params:
+    - name: message
+      type: string
+      description: Messag to print
+      default: ""
+
+  steps:
+    - name: echo
+      image: alpine:3.24
+      script: |
+        echo "$(params.message)"
