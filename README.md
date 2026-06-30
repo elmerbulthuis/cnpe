@@ -107,4 +107,4 @@ TODO
 
 ## Crossplane
 
-TODO
+There is the greeter CRDs that provide the Greeter kind that demonstrates usage of Crossplane composition.

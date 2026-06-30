@@ -2,6 +2,7 @@ namespace: crossplane-system
 
 resources:
   - namespace.yaml
+  - functions.yaml
 
 helmCharts:
   - repo: https://charts.crossplane.io/stable

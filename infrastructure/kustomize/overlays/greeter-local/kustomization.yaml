@@ -1,0 +1,4 @@
+namespace: exposed
+
+resources:
+  - ../../bases/greeter
