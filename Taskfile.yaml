@@ -109,6 +109,7 @@ tasks:
           as: OVERLAY
         cmd: >
           kustomize build
+          --enable-helm
           --output dist/kubernetes-{{.OVERLAY}}.yaml
           infrastructure/kustomize/overlays/{{.OVERLAY}}
 
