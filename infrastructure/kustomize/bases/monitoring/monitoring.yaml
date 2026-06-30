@@ -34,6 +34,22 @@ spec:
   podMetricsEndpoints:
     - port: "http-metrics"
       path: /metrics
+      metricRelabelings:
+        - sourceLabels: [exported_namespace]
+          targetLabel: namespace
+          action: replace
+        - sourceLabels: [exported_pod]
+          targetLabel: pod
+          action: replace
+        - sourceLabels: [exported_container]
+          targetLabel: container
+          action: replace
+        - regex: exported_namespace
+          action: labeldrop
+        - regex: exported_pod
+          action: labeldrop
+        - regex: exported_container
+          action: labeldrop
   selector:
     matchLabels:
       app.kubernetes.io/component: exporter
