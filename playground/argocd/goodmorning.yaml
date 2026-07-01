@@ -11,7 +11,7 @@ spec:
     server: https://kubernetes.default.svc
   source:
     path: infrastructure/helm/goodmorning
-    repoURL: https://github.com/elmerbulthuis/cpne.git
+    repoURL: https://github.com/elmerbulthuis/cnpe.git
     targetRevision: main
     helm:
       parameters:
