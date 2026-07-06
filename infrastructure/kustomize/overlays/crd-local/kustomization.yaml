@@ -10,4 +10,5 @@ resources:
   - ../../bases/crossplane-system
   - ../../bases/prometheus-operator
   - ../../bases/tekton-operator
+  - ../../bases/kyverno
   - argo
