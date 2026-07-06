@@ -5,4 +5,4 @@ metadata:
   name: compute-resources
 spec:
   hard:
-    limits.memory: "1Gi"
+    limits.memory: "10Mi"
