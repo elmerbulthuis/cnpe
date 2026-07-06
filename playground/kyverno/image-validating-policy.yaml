@@ -21,7 +21,7 @@ spec:
         resources:
           - pods
   matchImageReferences:
-    - glob: ghcr.io/kyverno/test-verify-image*
+    - glob: ghcr.io/*
   attestors:
     - name: notary
       notary:

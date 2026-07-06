@@ -1,0 +1,19 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: test-verify-image
+  name: test-verify-image
+spec:
+  containers:
+    - image: ghcr.io/kyverno/test-verify-image:37
+      name: test-verify-image
+      resources:
+        requests:
+          cpu: 10m
+          memory: 10Mi
+        limits:
+          cpu: 10m
+          memory: 10Mi
+      restartPolicy: Never
