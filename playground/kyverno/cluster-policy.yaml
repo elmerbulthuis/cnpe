@@ -15,10 +15,10 @@ spec:
                 - Pod
       verifyImages:
         - imageReferences:
-            - ghcr.io/*
+            - ghcr.io/kyverno/test-verify-image:*
           type: Notary
           attestors:
-            - count: 2
+            - count: 1
               entries:
                 - certificates:
                     cert: |-
