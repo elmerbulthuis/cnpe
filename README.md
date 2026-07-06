@@ -136,3 +136,7 @@ kubectl describe -n hello-client vpa hello-client
 ```
 
 The admission controller is switched off! So replace will not work, so no mutations! The admission controller needs some configuration that is out off scope for CNPE.
+
+## ResourceQuota / LimitRange
+
+see rq-lr in the playground
