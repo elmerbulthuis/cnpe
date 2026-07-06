@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: ResourceQuota
 metadata:
-  name: compute-resources
+  name: rq1
 spec:
   hard:
     limits.memory: "10Mi"
