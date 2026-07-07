@@ -4,6 +4,8 @@ kind: ImageValidatingPolicy
 metadata:
   name: verify-image
 spec:
+  webhookConfiguration:
+    timeoutSeconds: 30
   evaluation:
     background:
       enabled: false
@@ -21,7 +23,7 @@ spec:
         resources:
           - pods
   matchImageReferences:
-    - glob: ghcr.io/kyverno/test-verify-image:signed
+    - glob: ghcr.io/kyverno/test-verify-image:*
   attestors:
     - name: notary
       notary:

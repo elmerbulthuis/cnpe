@@ -1,0 +1,38 @@
+---
+apiVersion: policies.kyverno.io/v1
+kind: ImageValidatingPolicy
+metadata:
+  name: verify-image-keyless
+spec:
+  webhookConfiguration:
+    timeoutSeconds: 30
+  evaluation:
+    background:
+      enabled: false
+  validationActions:
+    - Deny
+  matchConstraints:
+    resourceRules:
+      - apiGroups:
+          - ""
+        apiVersions:
+          - v1
+        operations:
+          - CREATE
+          - UPDATE
+        resources:
+          - pods
+  matchImageReferences:
+    - glob: ghcr.io/kyverno/test-verify-image:*
+  attestors:
+    - name: cosign
+      cosign:
+        keyless:
+          identities:
+            - subject: "*@nirmata.com"
+              issuer: "https://accounts.google.com"
+        ctlog:
+          url: https://rekor.sigstore.dev
+  validations:
+    - expression: images.containers.map(image, verifyImageSignatures(image, [attestors.cosign])).all(e ,e > 0)
+      message: failed the verification
