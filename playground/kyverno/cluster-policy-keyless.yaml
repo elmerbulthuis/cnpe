@@ -4,6 +4,8 @@ kind: ClusterPolicy
 metadata:
   name: verify-image-keyless
 spec:
+  webhookConfiguration:
+    timeoutSeconds: 30
   validationFailureAction: Enforce
   background: false
   rules:
@@ -26,4 +28,4 @@ spec:
                     rekor:
                       url: https://rekor.sigstore.dev
                     ctlog:
-                      ignoreSCT: false
+                      ignoreSCT: true

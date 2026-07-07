@@ -4,6 +4,8 @@ kind: ClusterPolicy
 metadata:
   name: verify-image
 spec:
+  webhookConfiguration:
+    timeoutSeconds: 30
   validationFailureAction: Enforce
   background: false
   rules:
@@ -42,5 +44,3 @@ spec:
                       5/jn6XKt6UYCQJbVNzBg/YPGc1RF4xdsGVDBben/JXpeGEmkdmXPILTKd9tZ5TC0
                       uOKpF5rWAruB5PCIrquamOejpXV9aQA/K2JQDuc0mcKz
                       -----END CERTIFICATE-----
-                    ctlog:
-                      ignoreSCT: false
