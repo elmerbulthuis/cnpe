@@ -7,7 +7,7 @@ metadata:
   name: test-verify-image
 spec:
   containers:
-    - image: ghcr.io/kyverno/test-verify-image:37
+    - image: ghcr.io/kyverno/test-verify-image:signed
       name: test-verify-image
       resources:
         requests:
