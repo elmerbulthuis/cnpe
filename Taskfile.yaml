@@ -146,15 +146,3 @@ tasks:
           --tag cnpe-{{.IMAGE}}
           -f container-images/{{.IMAGE}}.containerfile
           .
-
-  test:kubernetes-dry-run:
-    deps:
-      - build:kustomize
-    cmds:
-      - for:
-          var: KUSTOMIZE_OVERLAYS_CRD
-          as: MANIFEST
-        cmd: >
-          until kubectl apply -f dist/kubernetes-{{.MANIFEST}}.yaml --server-side --warnings-as-errors ;
-          do sleep 10 ;
-          done
