@@ -33,6 +33,7 @@ spec:
               issuer: "https://accounts.google.com"
         ctlog:
           url: https://rekor.sigstore.dev
+          insecureIgnoreSCT: true
   validations:
     - expression: images.containers.map(image, verifyImageSignatures(image, [attestors.cosign])).all(e ,e > 0)
       message: failed the verification
