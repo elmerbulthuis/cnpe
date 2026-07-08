@@ -92,6 +92,9 @@ tasks:
     desc: Build Kubernetes manifests from kustomize
     sources:
       - infrastructure/kustomize/**/*
+    vars:
+      KUSTOMIZE_OVERLAYS:
+        ref: concat .KUSTOMIZE_OVERLAYS .KUSTOMIZE_OVERLAYS_CRD
     cmds:
       - mkdir -p dist
       - for:
