@@ -94,7 +94,7 @@ tasks:
       - infrastructure/kustomize/**/*
     vars:
       KUSTOMIZE_OVERLAYS:
-        ref: concat .KUSTOMIZE_OVERLAYS .KUSTOMIZE_OVERLAYS_CRD
+        ref: concat .KUSTOMIZE_OVERLAYS_INITIALIZE .KUSTOMIZE_OVERLAYS
     cmds:
       - mkdir -p dist
       - for:
