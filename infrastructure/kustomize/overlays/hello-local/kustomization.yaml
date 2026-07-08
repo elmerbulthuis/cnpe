@@ -1,9 +1,0 @@
-resources:
-  - ../../bases/hello
-  - ../../bases/hello-client
-
-replicas:
-  - name: hello
-    count: 2
-  - name: hello-client
-    count: 1

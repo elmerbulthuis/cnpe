@@ -1,0 +1,6 @@
+resources:
+  - ../../bases/colors
+  - ../../bases/greeter
+  - ../../bases/paint
+  - hello
+  - hello-client

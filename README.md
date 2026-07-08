@@ -4,13 +4,7 @@ This is a practice repository for the Certified Cloud Native Platform Engineerin
 
 ## Getting started
 
-Use `task build` to build everything. The apply the crd-local manifest to your local cluster via
-
-```sh
-kubectl apply --server-side -f dist/kubernetes-crd-local.yaml
-```
-
-Now you have a cluster with quite a few CNPE resources installed and configured!
+Use `task deploy:local` to deploy.
 
 ## Linkerd
 
@@ -85,7 +79,7 @@ Go to [localhost:2746](http://localhost:2746).
 
 ## Tekton
 
-Apply the `kubernetes-paint-local.yaml` manifest and run a tekton pipeline via:
+Run a tekton pipeline via:
 
 ```sh
 tkn pipelines start -n paint mix --workspace name=pipeline-state,emptyDir="" --showlog
@@ -115,7 +109,23 @@ TODO
 
 ## Jaeger
 
-TODO
+The hotrod example location is deployed, access it via:
+
+```sh
+kubectl port-forward -n hotrod services/hotrod 8080:8080
+```
+
+See those traces (and other collected things) via
+
+```sh
+kubectl logs --namespace monitoring --selector app.kubernetes.io/name=otel-simplest-collector --follow
+```
+
+And forward to the jaeger UI via:
+
+```sh
+kubectl port-forward -n monitoring services/jaeger-simplest-collector 16686:16686
+```
 
 ## Open Cost
 
@@ -123,7 +133,7 @@ Open cost installed, node exporter is missing, cost is based on kube state metri
 
 ## Crossplane
 
-There is the greeter CRDs that provide the Greeter kind that demonstrates usage of Crossplane composition. Install it via the `kubernetes-greeter-local.yaml` manifest and then play around with it in the playground.
+There is the greeter CRDs that provide the Greeter kind that demonstrates usage of Crossplane composition.
 
 ## Vertical Pod Autoscaler
 

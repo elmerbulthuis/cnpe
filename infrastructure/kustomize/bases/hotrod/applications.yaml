@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hotrod
+spec:
+  selector:
+    matchLabels:
+      app: hotrod
+  template:
+    metadata:
+      labels:
+        app: hotrod
+    spec:
+      containers:
+        - name: hotrod
+          image: jaegertracing/example-hotrod:2.19.0
+          ports:
+            - containerPort: 8080
+          env:
+            - name: OTEL_EXPORTER_OTLP_ENDPOINT
+              value: "http://otel-simplest-collector.monitoring:4318"
+            - name: OTEL_EXPORTER_OTLP_INSECURE
+              value: "true"
+          resources:
+            requests:
+              cpu: 10m
+              memory: 10Mi
+            limits:
+              cpu: 100m
+              memory: 100Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hotrod
+spec:
+  selector:
+    app: hotrod
+  ports:
+    - port: 8080
+      targetPort: 8080

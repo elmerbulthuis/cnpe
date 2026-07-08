@@ -1,0 +1,6 @@
+resources:
+  - ../../../bases/hello
+
+replicas:
+  - name: hello
+    count: 2

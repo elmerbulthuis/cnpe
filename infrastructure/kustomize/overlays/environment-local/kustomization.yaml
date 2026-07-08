@@ -11,4 +11,8 @@ resources:
   - ../../bases/prometheus-operator
   - ../../bases/tekton-operator
   - ../../bases/kyverno
+  - ../../bases/opentelemetry-operator-system
+  - ../../bases/monitoring
+  - ../../bases/opencost
+  - ../../bases/hotrod
   - argo

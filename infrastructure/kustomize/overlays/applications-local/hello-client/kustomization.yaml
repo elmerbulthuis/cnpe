@@ -1,0 +1,6 @@
+resources:
+  - ../../../bases/hello-client
+
+replicas:
+  - name: hello-client
+    count: 1
