@@ -44,7 +44,7 @@ tasks:
       - task: test:deploy-local
 
   install:npm:
-    cmd: once
+    run: once
     desc: Install Node.js dependencies
     sources:
       - package-lock.json
@@ -93,7 +93,7 @@ tasks:
       - npm run fix-formatting
 
   build:kustomize:
-    cmd: once
+    run: once
     desc: Build Kubernetes manifests from kustomize
     sources:
       - infrastructure/kustomize/**/*
@@ -112,7 +112,7 @@ tasks:
           infrastructure/kustomize/overlays/{{.OVERLAY}}
 
   build:helm:
-    cmd: once
+    run: once
     desc: Build Kubernetes manifests from helm
     sources:
       - infrastructure/helm/**/*
@@ -126,7 +126,7 @@ tasks:
           dist/kubernetes-{{.CHART}}.yaml
 
   build:container-images:
-    cmd: once
+    run: once
     desc: Build images
     cmds:
       - for:
