@@ -7,6 +7,7 @@ vars:
     - environment-local
   KUSTOMIZE_OVERLAYS:
     - applications-local
+    - hi-local
   HELM_CHARTS:
     - goodmorning
   CONTAINER_IMAGES:
