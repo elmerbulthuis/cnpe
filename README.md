@@ -79,7 +79,7 @@ Go to [localhost:2746](http://localhost:2746).
 
 ## Tekton
 
-Apply the `kubernetes-paint-local.yaml` manifest and run a tekton pipeline via:
+Run a tekton pipeline via:
 
 ```sh
 tkn pipelines start -n paint mix --workspace name=pipeline-state,emptyDir="" --showlog
