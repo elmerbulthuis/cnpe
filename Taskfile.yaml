@@ -152,6 +152,11 @@ tasks:
           ;
           done
       - cmd: >
-          kubectl apply
+          until kubectl apply
           -f dist/kubernetes-applications-local.yaml 
+          --server-side 
           --warnings-as-errors
+          ;
+          do sleep 10
+          ;
+          done
