@@ -1,0 +1,9 @@
+resources:
+  - ../../bases/colors
+  - ../../bases/greeter
+  - ../../bases/monitoring
+  - ../../bases/opencost
+  - ../../bases/paint
+  - hello
+  - hello-client
+  - hi

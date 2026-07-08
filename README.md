@@ -7,10 +7,18 @@ This is a practice repository for the Certified Cloud Native Platform Engineerin
 Use `task build` to build everything. The apply the local manifest to your local cluster via
 
 ```sh
-until kubectl apply -f dist/kubernetes-local.yaml --server-side --warnings-as-errors ; do sleep 10 ; done
+until kubectl apply -f dist/kubernetes-environment-local.yaml --server-side --warnings-as-errors ; do sleep 10 ; done
 ```
 
 Now you have a cluster with quite a few CNPE resources installed and configured!
+
+Run
+
+```sh
+kubectl apply -f dist/kubernetes-applications-local.yaml
+```
+
+to install applications.
 
 ## Linkerd
 

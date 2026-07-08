@@ -3,9 +3,10 @@
 version: "3"
 
 vars:
+  KUSTOMIZE_OVERLAYS_INITIALIZE:
+    - environment-local
   KUSTOMIZE_OVERLAYS:
-    - local
-    - hi
+    - applications-local
   HELM_CHARTS:
     - goodmorning
   CONTAINER_IMAGES:
@@ -36,11 +37,6 @@ tasks:
       - task: build:kustomize
       - task: build:helm
       - task: build:container-images
-
-  test:
-    desc: Test everything
-    cmds:
-      - task: test:kubernetes-dry-run
 
   install:npm:
     run: once
