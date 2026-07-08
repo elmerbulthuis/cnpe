@@ -38,11 +38,6 @@ tasks:
       - task: build:helm
       - task: build:container-images
 
-  test:
-    desc: Test everything
-    cmds:
-      - task: test:deploy-local
-
   install:npm:
     run: once
     desc: Install Node.js dependencies
@@ -138,7 +133,7 @@ tasks:
           -f container-images/{{.IMAGE}}.containerfile
           .
 
-  test:deploy-local:
+  deploy:local:
     deps:
       - build:kustomize
     cmds:
