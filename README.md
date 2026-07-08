@@ -121,6 +121,12 @@ See those traces (and other collected things) via
 kubectl logs --namespace monitoring --selector app.kubernetes.io/name=otel-simplest-collector --follow
 ```
 
+And forward to the jaeger UI via:
+
+```sh
+kubectl port-forward -n monitoring services/jaeger-simplest-collector 16686:16686
+```
+
 ## Open Cost
 
 Open cost installed, node exporter is missing, cost is based on kube state metrics alone and with fictional values.
