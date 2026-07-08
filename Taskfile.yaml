@@ -155,4 +155,6 @@ tasks:
           var: KUSTOMIZE_OVERLAYS_CRD
           as: MANIFEST
         cmd: >
-          kubectl apply -f dist/kubernetes-{{.MANIFEST}}.yaml --dry-run=client
+          until kubectl apply -f dist/kubernetes-{{.MANIFEST}}.yaml --server-side --warnings-as-errors ;
+          do sleep 10 ;
+          done

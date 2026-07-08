@@ -10,6 +10,8 @@ Use `task build` to build everything. The apply the crd-local manifest to your l
 kubectl apply --server-side -f dist/kubernetes-crd-local.yaml
 ```
 
+You may need to run it multiple times...
+
 Now you have a cluster with quite a few CNPE resources installed and configured!
 
 ## Linkerd
