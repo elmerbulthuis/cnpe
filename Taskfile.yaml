@@ -146,9 +146,9 @@ tasks:
           -f dist/kubernetes-{{.OVERLAY}}.yaml 
           --server-side 
           --warnings-as-errors
-          ;
-          do sleep 10
-          ;
+          ; do
+          echo 'Waiting 10 seconds for retry...' ;
+          sleep 10 ;
           done
       - for:
           var: KUSTOMIZE_OVERLAYS
@@ -157,7 +157,7 @@ tasks:
           until kubectl apply
           -f dist/kubernetes-{{.OVERLAY}}.yaml 
           --warnings-as-errors
-          ;
-          do sleep 10
-          ;
+          ; do
+          echo 'Waiting 10 seconds for retry...' ;
+          sleep 10 ;
           done
