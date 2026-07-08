@@ -17,15 +17,13 @@ spec:
                 - Pod
       verifyImages:
         - imageReferences:
-            - ghcr.io/kyverno/test-verify-image:*
+            - ghcr.io/elmerbulthuis/cnpe-*
           type: Cosign
           attestors:
             - count: 1
               entries:
                 - keyless:
-                    subject: "*@nirmata.com"
-                    issuer: "https://accounts.google.com"
+                    subject: https://github.com/elmerbulthuis/cnpe/.github/workflows/release.yaml@refs/heads/kyverno
+                    issuer: https://token.actions.githubusercontent.com
                     rekor:
                       url: https://rekor.sigstore.dev
-                    ctlog:
-                      ignoreSCT: true

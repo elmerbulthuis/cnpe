@@ -5,7 +5,7 @@ metadata:
   name: test-verify-image-keyless
 spec:
   containers:
-    - image: ghcr.io/kyverno/test-verify-image:signed-keyless
+    - image: ghcr.io/elmerbulthuis/cnpe-hello:7f8ff7e33dd6ca1012568a9489c7d618fc315e83
       name: container1
       resources:
         requests:

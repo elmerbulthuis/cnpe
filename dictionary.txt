@@ -1,6 +1,7 @@
 authzpolicy
 CNPE
 crds
+ctlog
 deconflict
 elmerbulthuis
 finalizer
@@ -12,4 +13,5 @@ kubelet
 Kustomization
 kyverno
 openAPIV3
+rekor
 xpkg
