@@ -11,4 +11,5 @@ resources:
   - ../../bases/prometheus-operator
   - ../../bases/tekton-operator
   - ../../bases/kyverno
+  - ../../bases/opentelemetry-operator-system
   - argo
