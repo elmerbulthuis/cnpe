@@ -45,3 +45,9 @@ jobs:
           do sleep 10
           ;
           done
+      - run: >
+          kubectl wait
+          --for=condition=Ready
+          --all-namespaces
+          --all
+          pod
