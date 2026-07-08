@@ -16,3 +16,12 @@ jobs:
         with:
           version: v0.71.2
       - run: task check
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: go-task/setup-task@v1
+        with:
+          version: "3.50"
+      - run: task build

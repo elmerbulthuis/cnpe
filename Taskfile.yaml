@@ -138,19 +138,24 @@ tasks:
     deps:
       - build:kustomize
     cmds:
-      - cmd: >
+      - for:
+          var: KUSTOMIZE_OVERLAYS_INITIALIZE
+          as: OVERLAY
+        cmd: >
           until kubectl apply
-          -f dist/kubernetes-environment-local.yaml 
+          -f dist/kubernetes-{{.OVERLAY}}.yaml 
           --server-side 
           --warnings-as-errors
           ;
           do sleep 10
           ;
           done
-      - cmd: >
+      - for:
+          var: KUSTOMIZE_OVERLAYS
+          as: OVERLAY
+        cmd: >
           until kubectl apply
-          -f dist/kubernetes-applications-local.yaml 
-          --server-side 
+          -f dist/kubernetes-{{.OVERLAY}}.yaml 
           --warnings-as-errors
           ;
           do sleep 10
