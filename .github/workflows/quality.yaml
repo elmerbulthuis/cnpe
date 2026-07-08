@@ -28,13 +28,23 @@ jobs:
       - run: task build:kustomize
       - run: >
           until kubectl apply
-          -f dist/kubernetes-local.yaml 
+          -f dist/kubernetes-environment-local.yaml 
           --server-side 
           --warnings-as-errors
           ;
           do sleep 10
           ;
           done
+      - run: >
+          kubectl wait
+          --for=condition=Ready
+          --all-namespaces
+          --all
+          pod
+      - run: >
+          kubectl apply
+          -f dist/kubernetes-applications-local.yaml 
+          --warnings-as-errors
       - run: >
           kubectl wait
           --for=condition=Ready
