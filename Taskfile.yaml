@@ -152,20 +152,6 @@ tasks:
           ;
           done
       - cmd: >
-          kubectl wait
-          --for=condition=Ready
-          --all-namespaces
-          --all
-          --timeout=2m
-          pod
-      - cmd: >
           kubectl apply
           -f dist/kubernetes-applications-local.yaml 
           --warnings-as-errors
-      - cmd: >
-          kubectl wait
-          --for=condition=Ready
-          --all-namespaces
-          --all
-          --timeout=2m
-          pod
