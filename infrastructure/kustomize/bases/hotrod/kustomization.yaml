@@ -1,0 +1,5 @@
+namespace: hotrod
+
+resources:
+  - namespace.yaml
+  - applications.yaml

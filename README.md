@@ -109,7 +109,17 @@ TODO
 
 ## Jaeger
 
-TODO
+The hotrod example location is deployed, access it via:
+
+```sh
+kubectl port-forward -n hotrod services/hotrod 8080:8080
+```
+
+See those traces (and other collected things) via
+
+```sh
+kubectl logs --namespace monitoring --selector app.kubernetes.io/name=otel-simplest-collector --follow
+```
 
 ## Open Cost
 
