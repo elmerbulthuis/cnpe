@@ -1,0 +1,17 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: test-verify-image-keyless
+spec:
+  containers:
+    - image: ghcr.io/elmerbulthuis/cnpe-hello:7f8ff7e33dd6ca1012568a9489c7d618fc315e83
+      name: container1
+      resources:
+        requests:
+          cpu: 10m
+          memory: 10Mi
+        limits:
+          cpu: 10m
+          memory: 10Mi
+      restartPolicy: Never

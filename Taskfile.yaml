@@ -15,6 +15,8 @@ vars:
     - opencost-local
   HELM_CHARTS:
     - goodmorning
+  CONTAINER_IMAGES:
+    - hello
 
 tasks:
   install:
@@ -40,6 +42,7 @@ tasks:
     cmds:
       - task: build:kustomize
       - task: build:helm
+      - task: build:container-images
 
   test:
     desc: Test everything
@@ -130,6 +133,19 @@ tasks:
         cmd: >
           helm template hello ./infrastructure/helm/{{.CHART}} >
           dist/kubernetes-{{.CHART}}.yaml
+
+  build:container-images:
+    run: once
+    desc: Build images
+    cmds:
+      - for:
+          var: CONTAINER_IMAGES
+          as: IMAGE
+        cmd: >
+          docker build
+          --tag cnpe-{{.IMAGE}}
+          -f container-images/{{.IMAGE}}.containerfile
+          .
 
   test:kubernetes-dry-run:
     deps:

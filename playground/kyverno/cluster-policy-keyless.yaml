@@ -1,0 +1,29 @@
+---
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: verify-image-keyless
+spec:
+  webhookConfiguration:
+    timeoutSeconds: 30
+  validationFailureAction: Enforce
+  background: false
+  rules:
+    - name: verify-image
+      match:
+        any:
+          - resources:
+              kinds:
+                - Pod
+      verifyImages:
+        - imageReferences:
+            - ghcr.io/elmerbulthuis/cnpe-*
+          type: Cosign
+          attestors:
+            - count: 1
+              entries:
+                - keyless:
+                    subject: https://github.com/elmerbulthuis/cnpe/.github/workflows/release.yaml@refs/heads/kyverno
+                    issuer: https://token.actions.githubusercontent.com
+                    rekor:
+                      url: https://rekor.sigstore.dev

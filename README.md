@@ -99,7 +99,7 @@ We only check our applications manifests with trivy.
 
 ## Kyverno
 
-TODO
+Kyverno is installed, there are some experiments in the playground folder.
 
 ## OPA Gatekeeper
 
