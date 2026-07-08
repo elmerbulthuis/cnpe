@@ -7,8 +7,9 @@ finalizer
 finalizers
 fluxcd
 gotk
+htdocs
 kubelet
+Kustomization
 kyverno
 openAPIV3
 xpkg
-Kustomization
