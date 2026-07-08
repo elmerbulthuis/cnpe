@@ -38,8 +38,13 @@ tasks:
       - task: build:helm
       - task: build:container-images
 
+  test:
+    desc: Test everything
+    cmds:
+      - task: test:deploy-local
+
   install:npm:
-    run: once
+    cmd: once
     desc: Install Node.js dependencies
     sources:
       - package-lock.json
@@ -88,7 +93,7 @@ tasks:
       - npm run fix-formatting
 
   build:kustomize:
-    run: once
+    cmd: once
     desc: Build Kubernetes manifests from kustomize
     sources:
       - infrastructure/kustomize/**/*
@@ -107,7 +112,7 @@ tasks:
           infrastructure/kustomize/overlays/{{.OVERLAY}}
 
   build:helm:
-    run: once
+    cmd: once
     desc: Build Kubernetes manifests from helm
     sources:
       - infrastructure/helm/**/*
@@ -121,7 +126,7 @@ tasks:
           dist/kubernetes-{{.CHART}}.yaml
 
   build:container-images:
-    run: once
+    cmd: once
     desc: Build images
     cmds:
       - for:
@@ -132,3 +137,35 @@ tasks:
           --tag cnpe-{{.IMAGE}}
           -f container-images/{{.IMAGE}}.containerfile
           .
+
+  test:deploy-local:
+    deps:
+      - build:kustomize
+    cmds:
+      - cmd: >
+          until kubectl apply
+          -f dist/kubernetes-environment-local.yaml 
+          --server-side 
+          --warnings-as-errors
+          ;
+          do sleep 10
+          ;
+          done
+      - cmd: >
+          kubectl wait
+          --for=condition=Ready
+          --all-namespaces
+          --all
+          --timeout=2m
+          pod
+      - cmd: >
+          kubectl apply
+          -f dist/kubernetes-applications-local.yaml 
+          --warnings-as-errors
+      - cmd: >
+          kubectl wait
+          --for=condition=Ready
+          --all-namespaces
+          --all
+          --timeout=2m
+          pod

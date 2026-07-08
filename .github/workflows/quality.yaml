@@ -17,7 +17,7 @@ jobs:
           version: v0.71.2
       - run: task check
 
-  deploy-local:
+  test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -25,31 +25,10 @@ jobs:
         with:
           version: "3.50"
       - run: minikube start
-      - run: task build:kustomize
-      - run: >
-          until kubectl apply
-          -f dist/kubernetes-environment-local.yaml 
-          --server-side 
-          --warnings-as-errors
-          ;
-          do sleep 10
-          ;
-          done
-      - run: >
-          kubectl wait
-          --for=condition=Ready
-          --all-namespaces
-          --all
-          --timeout=2m
-          pod
-      - run: >
-          kubectl apply
-          -f dist/kubernetes-applications-local.yaml 
-          --warnings-as-errors
-      - run: >
-          kubectl wait
-          --for=condition=Ready
-          --all-namespaces
-          --all
-          --timeout=2m
-          pod
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - uses: aquasecurity/setup-trivy@v0.3.1
+        with:
+          version: v0.71.2
+      - run: task test
