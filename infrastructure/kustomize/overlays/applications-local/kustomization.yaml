@@ -2,6 +2,5 @@ resources:
   - ../../bases/colors
   - ../../bases/greeter
   - ../../bases/paint
-  - ../../bases/hotrod
   - hello
   - hello-client
