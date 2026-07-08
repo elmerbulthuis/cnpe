@@ -27,7 +27,7 @@ jobs:
       - run: minikube start
       - run: task test
 
-  deploy-local-crd:
+  deploy-local:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -37,7 +37,11 @@ jobs:
       - run: minikube start
       - run: task build:kustomize
       - run: >
-          kubectl apply
-          --server-side
+          until kubectl apply
+          -f dist/kubernetes-local.yaml 
+          --server-side 
           --warnings-as-errors
-          -f dist/kubernetes-crd-local.yaml
+          ;
+          do sleep 10
+          ;
+          done

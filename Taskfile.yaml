@@ -3,16 +3,9 @@
 version: "3"
 
 vars:
-  KUSTOMIZE_OVERLAYS_CRD:
-    - crd-local
   KUSTOMIZE_OVERLAYS:
-    - hello-local
-    - hi-local
-    - greeter-local
-    - colors-local
-    - paint-local
-    - monitoring-local
-    - opencost-local
+    - local
+    - hi
   HELM_CHARTS:
     - goodmorning
   CONTAINER_IMAGES:
@@ -70,9 +63,6 @@ tasks:
           trivy config --exit-code 1 dist/kubernetes-{{.OVERLAY}}.yaml
 
   check:trivy-helm:
-    vars:
-      KUSTOMIZE_OVERLAYS:
-        ref: concat .KUSTOMIZE_OVERLAYS .KUSTOMIZE_OVERLAYS_CRD
     cmds:
       - for:
           var: HELM_CHARTS
@@ -104,9 +94,6 @@ tasks:
   build:kustomize:
     run: once
     desc: Build Kubernetes manifests from kustomize
-    vars:
-      KUSTOMIZE_OVERLAYS:
-        ref: concat .KUSTOMIZE_OVERLAYS .KUSTOMIZE_OVERLAYS_CRD
     sources:
       - infrastructure/kustomize/**/*
     cmds:

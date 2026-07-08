@@ -4,13 +4,11 @@ This is a practice repository for the Certified Cloud Native Platform Engineerin
 
 ## Getting started
 
-Use `task build` to build everything. The apply the crd-local manifest to your local cluster via
+Use `task build` to build everything. The apply the local manifest to your local cluster via
 
 ```sh
-kubectl apply --server-side -f dist/kubernetes-crd-local.yaml
+until kubectl apply -f dist/kubernetes-local.yaml --server-side --warnings-as-errors ; do sleep 10 ; done
 ```
-
-You may need to run it multiple times...
 
 Now you have a cluster with quite a few CNPE resources installed and configured!
 
@@ -125,7 +123,7 @@ Open cost installed, node exporter is missing, cost is based on kube state metri
 
 ## Crossplane
 
-There is the greeter CRDs that provide the Greeter kind that demonstrates usage of Crossplane composition. Install it via the `kubernetes-greeter-local.yaml` manifest and then play around with it in the playground.
+There is the greeter CRDs that provide the Greeter kind that demonstrates usage of Crossplane composition.
 
 ## Vertical Pod Autoscaler
 

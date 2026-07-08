@@ -12,4 +12,17 @@ resources:
   - ../../bases/tekton-operator
   - ../../bases/kyverno
   - ../../bases/opentelemetry-operator-system
+  - ../../bases/colors
+  - ../../bases/greeter
+  - ../../bases/hello
+  - ../../bases/hello-client
+  - ../../bases/monitoring
+  - ../../bases/opencost
+  - ../../bases/paint
   - argo
+
+replicas:
+  - name: hello
+    count: 2
+  - name: hello-client
+    count: 1
