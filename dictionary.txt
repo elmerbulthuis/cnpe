@@ -1,5 +1,6 @@
 authzpolicy
 CNPE
+controlplaneio
 crds
 ctlog
 deconflict

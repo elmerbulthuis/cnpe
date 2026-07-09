@@ -15,4 +15,5 @@ resources:
   - ../../bases/monitoring
   - ../../bases/opencost
   - ../../bases/hotrod
+  - ../../bases/flux-system
   - argo
