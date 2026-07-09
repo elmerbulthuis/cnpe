@@ -1,7 +1,8 @@
 namespace: flagger-system
 
-commonLabels:
-  app: flagger
+labels:
+  - pairs:
+      app: flagger
 
 resources:
   - namespace.yaml
