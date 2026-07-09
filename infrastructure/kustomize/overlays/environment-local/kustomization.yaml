@@ -16,4 +16,5 @@ resources:
   - ../../bases/opencost
   - ../../bases/hotrod
   - ../../bases/flux-system
+  - ../../bases/flagger-system
   - argo

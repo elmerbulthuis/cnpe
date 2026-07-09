@@ -1,0 +1,4 @@
+namespace: flagger-system
+
+resources:
+  - https://github.com/fluxcd/flagger/kustomize/kubernetes?ref=v1.43.0
