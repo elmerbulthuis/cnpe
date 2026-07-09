@@ -5,6 +5,7 @@ resources:
 
 helmCharts:
   - repo: https://flagger.app
+    releaseName: flagger
     name: flagger
     version: 1.43.0
     valuesFile: values.yaml
