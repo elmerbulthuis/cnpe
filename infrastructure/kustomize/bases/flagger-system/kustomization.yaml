@@ -1,4 +1,16 @@
 namespace: flagger-system
 
+commonLabels:
+  app: flagger
+
 resources:
-  - https://github.com/fluxcd/flagger/kustomize/base/flagger?ref=v1.43.0
+  - namespace.yaml
+  - account.yaml
+  - rbac.yaml
+  - crd.yaml
+  - deployment.yaml
+
+images:
+  - name: ghcr.io/fluxcd/flagger
+    newName: ghcr.io/fluxcd/flagger
+    newTag: 1.43.0
