@@ -51,7 +51,7 @@ Checkout the playground for some fun examples.
 
 ## Flux
 
-TODO
+See playground
 
 ## Argo Rollouts
 
