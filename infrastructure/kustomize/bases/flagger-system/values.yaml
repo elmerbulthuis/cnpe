@@ -1,0 +1,9 @@
+metricsServer: "http://prometheus-operated.monitoring:9090"
+
+serviceMonitor:
+  enabled: true
+
+crd:
+  create: true
+
+meshProvider: gatewayapi:v1

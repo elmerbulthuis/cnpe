@@ -1,0 +1,22 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flagger
+  namespace: flagger-system
+spec:
+  selector: {}
+  template:
+    spec:
+      containers:
+        - name: flagger
+          livenessProbe:
+            exec:
+              command:
+                - echo
+                - ok
+          readinessProbe:
+            exec:
+              command:
+                - echo
+                - ok

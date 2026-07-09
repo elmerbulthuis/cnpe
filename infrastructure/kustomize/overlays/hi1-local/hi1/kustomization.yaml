@@ -1,0 +1,4 @@
+namespace: hi1
+
+resources:
+  - ../../../bases/hi1

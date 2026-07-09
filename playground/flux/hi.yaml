@@ -1,0 +1,24 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: elmerbulthuis-cnpe
+spec:
+  interval: 2m
+  url: https://github.com/elmerbulthuis/cnpe.git
+  ref:
+    branch: main
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: hi
+spec:
+  interval: 2m
+  targetNamespace: hi
+  sourceRef:
+    kind: GitRepository
+    name: elmerbulthuis-cnpe
+  path: infrastructure/kustomize/overlays/hi-local
+  prune: true
+  timeout: 1m

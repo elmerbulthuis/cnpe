@@ -1,0 +1,6 @@
+namespace: hi1
+
+resources:
+  - namespace.yaml
+  - applications.yaml
+  - gateway.yaml
