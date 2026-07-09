@@ -3,7 +3,7 @@
 version: "3"
 
 vars:
-  KUSTOMIZE_OVERLAYS_INITIALIZE:
+  KUSTOMIZE_OVERLAYS_VENDOR:
     - environment-local
   KUSTOMIZE_OVERLAYS:
     - applications-local
@@ -94,7 +94,7 @@ tasks:
       - infrastructure/kustomize/**/*
     vars:
       KUSTOMIZE_OVERLAYS:
-        ref: concat .KUSTOMIZE_OVERLAYS_INITIALIZE .KUSTOMIZE_OVERLAYS
+        ref: concat .KUSTOMIZE_OVERLAYS_VENDOR .KUSTOMIZE_OVERLAYS
     cmds:
       - mkdir -p dist
       - for:
@@ -138,7 +138,7 @@ tasks:
       - build:kustomize
     cmds:
       - for:
-          var: KUSTOMIZE_OVERLAYS_INITIALIZE
+          var: KUSTOMIZE_OVERLAYS_VENDOR
           as: OVERLAY
         cmd: >
           until kubectl apply
