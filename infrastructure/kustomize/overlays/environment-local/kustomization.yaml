@@ -17,5 +17,4 @@ resources:
   - ../../bases/hotrod
   - ../../bases/flux-system
   - ../../bases/flagger-system
-  - ../../bases/traefik
   - argo
