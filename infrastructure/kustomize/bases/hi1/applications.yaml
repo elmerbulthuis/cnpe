@@ -80,21 +80,20 @@ spec:
         runAsNonRoot: true
         seccompProfile:
           type: RuntimeDefault
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: hi1
-spec:
-  type: ClusterIP
-  selector:
-    app: hi1
-  ports:
-    - name: http
-      protocol: TCP
-      port: 8080
-      targetPort: http
-
+# ---
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: hi1
+# spec:
+#   type: ClusterIP
+#   selector:
+#     app: hi1
+#   ports:
+#     - name: http
+#       protocol: TCP
+#       port: 8080
+#       targetPort: http
 ---
 apiVersion: flagger.app/v1beta1
 kind: Canary

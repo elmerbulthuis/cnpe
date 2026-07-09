@@ -7,5 +7,3 @@ crd:
   create: true
 
 meshProvider: gatewayapi:v1
-
-namespace: flagger-system
