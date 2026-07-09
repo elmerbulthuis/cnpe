@@ -80,20 +80,6 @@ spec:
         runAsNonRoot: true
         seccompProfile:
           type: RuntimeDefault
-# ---
-# apiVersion: v1
-# kind: Service
-# metadata:
-#   name: hi1
-# spec:
-#   type: ClusterIP
-#   selector:
-#     app: hi1
-#   ports:
-#     - name: http
-#       protocol: TCP
-#       port: 8080
-#       targetPort: http
 ---
 apiVersion: flagger.app/v1beta1
 kind: Canary
@@ -107,17 +93,11 @@ spec:
   progressDeadlineSeconds: 60
   service:
     port: 8080
+    gatewayRefs:
+      - name: hi1
   analysis:
-    interval: 1m
+    interval: 1s
     threshold: 5
     maxWeight: 50
     stepWeight: 10
-    metrics:
-      - name: request-success-rate
-        interval: 1m
-        thresholdRange:
-          min: 99
-      - name: request-duration
-        interval: 1m
-        thresholdRange:
-          max: 500
+    metrics: []
