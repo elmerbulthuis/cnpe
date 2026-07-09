@@ -1,0 +1,11 @@
+namespace: traefik
+
+resources:
+  - namespace.yaml
+
+helmCharts:
+  - repo: https://traefik.github.io/charts
+    releaseName: traefik
+    name: traefik
+    version: 41.0.2
+    valuesFile: values.yaml

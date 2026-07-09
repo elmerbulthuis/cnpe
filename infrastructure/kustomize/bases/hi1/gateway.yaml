@@ -3,7 +3,7 @@ kind: Gateway
 metadata:
   name: hi1
 spec:
-  gatewayClassName: haproxy
+  gatewayClassName: traefik
   listeners:
     - name: http
       protocol: HTTP
