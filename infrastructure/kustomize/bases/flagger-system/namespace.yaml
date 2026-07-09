@@ -7,3 +7,5 @@ metadata:
     pod-security.kubernetes.io/enforce-version: v1.36
     pod-security.kubernetes.io/warn: baseline
     pod-security.kubernetes.io/warn-version: v1.36
+  annotations:
+    linkerd.io/inject: enabled

@@ -1,17 +1,10 @@
 namespace: flagger-system
 
-labels:
-  - pairs:
-      app: flagger
-
 resources:
   - namespace.yaml
-  - account.yaml
-  - rbac.yaml
-  - crd.yaml
-  - deployment.yaml
 
-images:
-  - name: ghcr.io/fluxcd/flagger
-    newName: ghcr.io/fluxcd/flagger
-    newTag: 1.43.0
+helmCharts:
+  - repo: https://flagger.app
+    name: flagger
+    version: 1.43.0
+    valuesFile: values.yaml
