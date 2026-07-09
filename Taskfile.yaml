@@ -7,6 +7,8 @@ vars:
     - environment-local
   KUSTOMIZE_OVERLAYS:
     - applications-local
+    - hi-local
+    - hi1-local
   HELM_CHARTS:
     - goodmorning
   CONTAINER_IMAGES:
@@ -139,18 +141,6 @@ tasks:
     cmds:
       - for:
           var: KUSTOMIZE_OVERLAYS_VENDOR
-          as: OVERLAY
-        cmd: >
-          until kubectl apply
-          -f dist/kubernetes-{{.OVERLAY}}.yaml 
-          --server-side 
-          --warnings-as-errors
-          ; do
-          echo 'Waiting 10 seconds for retry...' ;
-          sleep 10 ;
-          done
-      - for:
-          var: KUSTOMIZE_OVERLAYS
           as: OVERLAY
         cmd: >
           until kubectl apply

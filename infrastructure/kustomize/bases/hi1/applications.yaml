@@ -3,17 +3,45 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: hi-canary-flagger
-  name: hi-canary-flagger
+    app: hi1
+  name: hi1
 spec:
   selector:
     matchLabels:
-      app: hi-canary-flagger
+      app: hi1
   template:
     metadata:
       labels:
-        app: hi-canary-flagger
+        app: hi1
     spec:
+      initContainers:
+        - name: initialize
+          image: alpine:3.24
+          command:
+            - sh
+            - -c
+            - echo $MESSAGE > /srv/wwwroot/index.html
+          env:
+            - name: MESSAGE
+              value: "Hello 1"
+          resources:
+            requests:
+              cpu: 10m
+              memory: 10Mi
+            limits:
+              cpu: 100m
+              memory: 100Mi
+          volumeMounts:
+            - name: wwwroot
+              mountPath: /srv/wwwroot
+          securityContext:
+            runAsUser: 65534 # nobody
+            runAsGroup: 65534 # nobody
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop:
+                - ALL
       containers:
         - name: server
           image: python:3-alpine
@@ -47,8 +75,7 @@ spec:
                 - ALL
       volumes:
         - name: wwwroot
-          configMap:
-            name: hi-canary-flagger-wwwroot
+          emptyDir: {}
       securityContext:
         runAsNonRoot: true
         seccompProfile:
@@ -57,11 +84,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: hi-canary-flagger
+  name: hi1
 spec:
   type: ClusterIP
   selector:
-    app: hi-canary-flagger
+    app: hi1
   ports:
     - name: http
       protocol: TCP
@@ -72,18 +99,15 @@ spec:
 apiVersion: flagger.app/v1beta1
 kind: Canary
 metadata:
-  name: hi-canary-flagger
+  name: hi1
 spec:
   targetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: hi-canary-flagger
+    name: hi1
   progressDeadlineSeconds: 60
   service:
     port: 8080
-    gatewayRefs:
-      - name: gateway
-        namespace: istio-ingress
   analysis:
     interval: 1m
     threshold: 5
