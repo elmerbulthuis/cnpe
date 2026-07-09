@@ -63,9 +63,11 @@ kubectl port-forward -n argo-rollouts services/argo-rollouts-dashboard 3100:3100
 
 Go to [localhost:3100](http://localhost:3100).
 
+See alto the [hi](infrastructure/kustomize/bases/hi) base.
+
 ## Flagger
 
-TODO
+See alto the [hi](infrastructure/kustomize/bases/hi) base.
 
 ## Argo Workflows
 

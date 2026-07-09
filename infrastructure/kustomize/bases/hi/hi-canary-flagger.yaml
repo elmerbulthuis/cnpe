@@ -1,0 +1,100 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: hi-canary-flagger
+  name: hi-canary-flagger
+spec:
+  selector:
+    matchLabels:
+      app: hi-canary-flagger
+  template:
+    metadata:
+      labels:
+        app: hi-canary-flagger
+    spec:
+      containers:
+        - name: server
+          image: python:3-alpine
+          command:
+            - python
+            - -m
+            - http.server
+            - -d
+            - /srv/wwwroot
+            - "8080"
+          ports:
+            - name: http
+              containerPort: 8080
+          resources:
+            requests:
+              cpu: 10m
+              memory: 10Mi
+            limits:
+              cpu: 200m
+              memory: 200Mi
+          volumeMounts:
+            - name: wwwroot
+              mountPath: /srv/wwwroot
+          securityContext:
+            runAsUser: 65534 # nobody
+            runAsGroup: 65534 # nobody
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop:
+                - ALL
+      volumes:
+        - name: wwwroot
+          configMap:
+            name: hi-canary-flagger-wwwroot
+      securityContext:
+        runAsNonRoot: true
+        seccompProfile:
+          type: RuntimeDefault
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hi-canary-flagger
+spec:
+  type: ClusterIP
+  selector:
+    app: hi-canary-flagger
+  ports:
+    - name: http
+      protocol: TCP
+      port: 8080
+      targetPort: http
+
+---
+apiVersion: flagger.app/v1beta1
+kind: Canary
+metadata:
+  name: hi-canary-flagger
+spec:
+  targetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: hi-canary-flagger
+  progressDeadlineSeconds: 60
+  service:
+    port: 8080
+    gatewayRefs:
+      - name: gateway
+        namespace: istio-ingress
+  analysis:
+    interval: 1m
+    threshold: 5
+    maxWeight: 50
+    stepWeight: 10
+    metrics:
+      - name: request-success-rate
+        interval: 1m
+        thresholdRange:
+          min: 99
+      - name: request-duration
+        interval: 1m
+        thresholdRange:
+          max: 500

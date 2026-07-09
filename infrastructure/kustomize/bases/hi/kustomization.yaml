@@ -4,3 +4,4 @@ resources:
   - namespace.yaml
   - hi-bluegreen.yaml
   - hi-canary.yaml
+  - hi-canary-flagger.yaml

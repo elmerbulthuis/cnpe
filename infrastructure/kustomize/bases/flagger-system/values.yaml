@@ -1,8 +1,11 @@
-metricsServer: "http://prometheus.monitoring:9090"
+metricsServer: "http://prometheus-operated.monitoring:9090"
 
 serviceMonitor:
   enabled: true
 
-meshProvider: linkerd
+crd:
+  create: true
+
+meshProvider: gatewayapi:v1
 
 namespace: flagger-system
