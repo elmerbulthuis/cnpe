@@ -16,6 +16,8 @@ done
 
 We simply keep retrying until the apply passes. Apply may fail because crds are used that are defined in the same manifest.
 
+CRD's are typically applied server side. This is because they can get pretty big, too big for client side applies.
+
 ## Linkerd
 
 Keys are generated and put in the `values.yaml` file, this is of course a very dirty and dangerous thing that should never be allowed, except maybe for the playground that this repository is.
