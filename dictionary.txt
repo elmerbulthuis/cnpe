@@ -1,6 +1,7 @@
 authzpolicy
 CNPE
 controlplaneio
+crdjob
 crds
 ctlog
 deconflict
@@ -9,6 +10,7 @@ finalizer
 finalizers
 fluxcd
 gotk
+gwapijob
 htdocs
 kubelet
 Kustomization

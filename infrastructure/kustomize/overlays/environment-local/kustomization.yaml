@@ -17,4 +17,5 @@ resources:
   - ../../bases/hotrod
   - ../../bases/flux-system
   - ../../bases/flagger-system
+  - ../../bases/haproxy-unified-gateway
   - argo

@@ -1,0 +1,12 @@
+controller:
+  serviceMonitor:
+    enabled: true
+
+hugconf:
+  create: true
+
+crdjob:
+  enabled: true
+
+gwapijob:
+  enabled: false
