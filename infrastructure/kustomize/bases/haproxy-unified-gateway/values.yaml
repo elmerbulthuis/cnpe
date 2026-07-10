@@ -3,10 +3,10 @@ controller:
     enabled: true
 
 hugconf:
-  create: false
+  create: true
 
 crdjob:
-  enabled: false
+  enabled: true
 
 gwapijob:
   enabled: false
