@@ -6,7 +6,6 @@ metadata:
 spec:
   instances: 2
   storage:
-    storageClass: local
     size: 2Gi
   postgresql:
     pg_hba:
