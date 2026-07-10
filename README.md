@@ -4,7 +4,19 @@ This is a practice repository for the Certified Cloud Native Platform Engineerin
 
 ## Getting started
 
-Use `task deploy:local` to deploy.
+First build everything via `task build`. Then deploy the environment via:
+
+```sh
+until kubectl apply --filename dist/kubernetes-environment-local.yaml --server-side --warnings-as-errors ;
+do
+    echo 'Waiting 10 seconds for retry...' ;
+    sleep 10 ;
+done
+```
+
+We simply keep retrying until the apply passes. Apply may fail because crds are used that are defined in the same manifest.
+
+CRD's are typically applied server side. This is because they can get pretty big, too big for client side applies.
 
 ## Linkerd
 
@@ -13,13 +25,17 @@ Keys are generated and put in the `values.yaml` file, this is of course a very d
 See how hello-client is able to connect to the hello server. Use the following to verify that you are not:
 
 ```
+
 kubectl run -ti --rm --image alpine bad-hello-client --namespace hello -- wget -qO- http://hello.hello:8080
+
 ```
 
 But this will work:
 
 ```
+
 kubectl run -ti --rm --image alpine good-hello-client --namespace hello-client -- wget -qO- http://hello.hello:8080
+
 ```
 
 ## Istio
