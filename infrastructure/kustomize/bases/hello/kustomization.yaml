@@ -7,8 +7,3 @@ resources:
   - namespace.yaml
   - applications.yaml
   - policies.yaml
-
-configMapGenerator:
-  - name: hello-wwwroot
-    files:
-      - index.html

@@ -47,3 +47,28 @@ spec:
     - kind: ServiceAccount
       name: prometheus
       namespace: monitoring
+---
+apiVersion: kyverno.io/v1
+kind: Policy
+metadata:
+  name: verify-image
+spec:
+  validationFailureAction: Enforce
+  background: false
+  rules:
+    - name: verify-image
+      match:
+        any:
+          - resources:
+              kinds:
+                - Pod
+      verifyImages:
+        - imageReferences:
+            - ghcr.io/elmerbulthuis/cnpe-*
+          attestors:
+            - entries:
+                - keyless:
+                    subjectRegExp: https://github.com/elmerbulthuis/cnpe/.*
+                    issuer: https://token.actions.githubusercontent.com
+                    rekor:
+                      url: https://rekor.sigstore.dev
