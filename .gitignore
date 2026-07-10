@@ -8,6 +8,7 @@
 !.gitignore
 !.trivyignore
 !.prettierignore 
+!.terraform.lock.hcl
 
 # directories
 
