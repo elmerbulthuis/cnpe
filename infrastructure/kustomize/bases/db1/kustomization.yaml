@@ -1,0 +1,5 @@
+namespace: db1
+
+resources:
+  - namespace.yaml
+  - databases.yaml
