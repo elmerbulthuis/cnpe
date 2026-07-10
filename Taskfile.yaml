@@ -7,7 +7,6 @@ vars:
     - environment-local
   KUSTOMIZE_OVERLAYS:
     - applications-local
-    - haproxy-local
     - hi-local
     - hi1-local
   HELM_CHARTS:
