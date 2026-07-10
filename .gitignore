@@ -1,6 +1,7 @@
 # files
 
 .*
+*.tfstate
 
 # file exceptions
 
