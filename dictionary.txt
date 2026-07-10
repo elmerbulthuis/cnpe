@@ -1,5 +1,6 @@
 authzpolicy
 CNPE
+cnpg
 controlplaneio
 crdjob
 crds
