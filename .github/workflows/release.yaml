@@ -30,6 +30,8 @@ jobs:
           flux push
           artifact ghcr.io/${{ github.repository }}-manifests:${{ github.sha }}
           --path="./dist"
+          --source="${{ github.server_url }}/${{ github.repository }}.git" \
+          --revision="${{ github.sha }}"
 
   release-images:
     runs-on: ubuntu-latest
