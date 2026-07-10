@@ -7,7 +7,35 @@ permissions:
   id-token: write
 
 jobs:
-  build-and-sign:
+  release-environment-local-manifest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: go-task/setup-task@v1
+        with:
+          version: "3.50"
+      - name: Setup Flux CLI
+        uses: fluxcd/flux2/action@main
+        with:
+          version: "2.9.1"
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - run: task build:kustomize
+      - run: mkdir artifacts
+      - run: cp dist/kubernetes-environment-local.yaml artifacts/manifest.yaml
+      - name: Push manifests
+        run: >
+          flux push
+          artifact oci://ghcr.io/${{ github.repository }}-environment-local-manifest:${{ github.sha }}
+          --path="./artifacts"
+          --source="${{ github.server_url }}/${{ github.repository }}.git"
+          --revision="${{ github.sha }}"
+
+  release-images:
     runs-on: ubuntu-latest
     strategy:
       matrix:

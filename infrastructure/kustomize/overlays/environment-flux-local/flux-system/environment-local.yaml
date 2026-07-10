@@ -1,0 +1,25 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: cnpe-environment-local-manifest
+spec:
+  interval: 2m
+  url: oci://ghcr.io/elmerbulthuis/cnpe-environment-local-manifest
+  ref:
+    tag: 47d3bc4c6cbd7e1820d55107b5a6f7c3fcb4a2b3
+
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: environment
+spec:
+  interval: 2m
+  retryInterval: 10s
+  sourceRef:
+    kind: OCIRepository
+    name: cnpe-environment-local-manifest
+  path: "."
+  prune: false
+  timeout: 1m

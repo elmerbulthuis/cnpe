@@ -1,0 +1,5 @@
+namespace: flux-system
+
+resources:
+  - ../../../bases/flux-system
+  - environment-local.yaml

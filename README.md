@@ -69,6 +69,16 @@ Checkout the playground for some fun examples.
 
 See playground
 
+Also you could install the entire environment via flux!
+
+```sh
+until kubectl apply --filename dist/kubernetes-environment-flux-local.yaml --server-side --warnings-as-errors ;
+do
+    echo 'Waiting 10 seconds for retry...' ;
+    sleep 10 ;
+done
+```
+
 ## Argo Rollouts
 
 Expose Argo CD UI via

@@ -5,6 +5,7 @@ version: "3"
 vars:
   KUSTOMIZE_OVERLAYS_VENDOR:
     - environment-local
+    - environment-flux-local
   KUSTOMIZE_OVERLAYS:
     - applications-local
     - hi-local
