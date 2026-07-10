@@ -7,8 +7,11 @@ This is a practice repository for the Certified Cloud Native Platform Engineerin
 First build everything via `task build`. Then deploy the environment via:
 
 ```sh
-
-
+until kubectl apply -f dist/kubernetes-environment-local.yaml --warnings-as-errors ; do
+echo 'Waiting 10 seconds for retry...' ;
+sleep 10 ;
+done
+```
 
 ## Linkerd
 
@@ -28,7 +31,7 @@ But this will work:
 
 kubectl run -ti --rm --image alpine good-hello-client --namespace hello-client -- wget -qO- http://hello.hello:8080
 
-````
+```
 
 ## Istio
 
@@ -45,7 +48,7 @@ Get the Argo CD UI admin password via
 ```sh
 kubectl -n argocd get secret argocd-initial-admin-secret \
     -o jsonpath="{.data.password}" | base64 -d; echo
-````
+```
 
 Expose Argo CD UI via
 
