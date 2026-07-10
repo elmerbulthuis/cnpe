@@ -24,7 +24,7 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      - run: task build:kustomize build:helm
+      - run: task build:kustomize
       - run: mkdir artifacts
       - run: cp dist/kubernetes-environment-local.yaml artifacts/manifest.yaml
       - name: Push manifests
