@@ -1,13 +1,14 @@
 ---
 apiVersion: source.toolkit.fluxcd.io/v1
-kind: GitRepository
+kind: OCIRepository
 metadata:
   name: elmerbulthuis-cnpe
 spec:
   interval: 2m
-  url: https://github.com/elmerbulthuis/cnpe.git
+  url: oci://ghcr.io/elmerbulthuis/cnpe-environment-local-manifest
   ref:
-    branch: main
+    tag: 0bb36a010d059ef04c7c0faf19fb41e4739102ca
+
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
@@ -16,10 +17,8 @@ metadata:
 spec:
   interval: 2m
   sourceRef:
-    kind: GitRepository
+    kind: OCIRepository
     name: elmerbulthuis-cnpe
-  path: infrastructure/kustomize/overlays/environment-local
+  path: manifest.yaml
   prune: false
   timeout: 1m
-  kustomize:
-    enableHelm: true

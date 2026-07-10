@@ -7,7 +7,7 @@ permissions:
   id-token: write
 
 jobs:
-  release-manifests:
+  release-environment-local-manifest:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -25,11 +25,13 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
       - run: task build:kustomize build:helm
+      - run: mkdir artifacts
+      - run: cp dist/kubernetes-environment-local.yaml artifacts/manifest.yaml
       - name: Push manifests
         run: >
           flux push
-          artifact oci://ghcr.io/${{ github.repository }}-manifests:${{ github.sha }}
-          --path="./dist"
+          artifact oci://ghcr.io/${{ github.repository }}-environment-local-manifest:${{ github.sha }}
+          --path="./artifacts"
           --source="${{ github.server_url }}/${{ github.repository }}.git"
           --revision="${{ github.sha }}"
 
